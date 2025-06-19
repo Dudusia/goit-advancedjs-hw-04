@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <form class="form">
+      <input
+        type="text"
+        class="search-input"
+        name="search"
+        placeholder="Search images..."
+      />
+      <button type="button" class="search-button">Search</button>
+    </form>
+    <ul class="gallery"></ul>
+    <script src="./main.js" type="module"></script>
+    <span class="loader js-loader"></span>
+    <button type="button" class="load-button">Load more</button>
+  </body>
+</html>
