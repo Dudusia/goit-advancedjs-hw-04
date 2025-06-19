@@ -14,6 +14,8 @@ const refs = {
   searchInput: document.querySelector('.search-input'),
 };
 
+const perPage = 15;
+
 /* Lightbox */
 var lightbox = new SimpleLightbox('.gallery a', {
   captions: true,
@@ -33,7 +35,7 @@ refs.searchBtn.addEventListener('click', () => {
   } else {
     refs.gallery.innerHTML = '';
     refs.loader.classList.add('active');
-    fetchImagesByQuery(refs.searchInput.value)
+    fetchImagesByQuery(refs.searchInput.value, perPage)
       .then(data => {
         if (data.total === 0) {
           iziToast.warning({
@@ -49,7 +51,9 @@ refs.searchBtn.addEventListener('click', () => {
 
         refs.gallery.innerHTML = galleryCardsTemplate;
         lightbox.refresh();
-        refs.loadBtn.classList.add('active');
+        if (data.total >= perPage) {
+          refs.loadBtn.classList.add('active');
+        }
       })
       .catch(err => {
         console.log(err);
@@ -65,7 +69,7 @@ var currLoadPage = 2;
 refs.loadBtn.addEventListener('click', () => {
   refs.loadBtn.classList.remove('active');
   refs.loader.classList.add('active');
-  fetchImagesByQuery(refs.searchInput.value, currLoadPage)
+  fetchImagesByQuery(refs.searchInput.value, perPage, currLoadPage)
     .then(data => {
       if (data.hits.length === 0) {
           iziToast.warning({
