@@ -76,23 +76,22 @@ refs.loadBtn.addEventListener('click', () => {
 
       refs.gallery.insertAdjacentHTML('beforeend', galleryCardsTemplate);
       lightbox.refresh();
-      if (data.hits.length < perPage || data.total === (currLoadPage * perPage)) {
-          iziToast.warning({
-            message:
-              "We're sorry, but you've reached the end of search results.",
-            position: 'topRight',
-          });
-          currLoadPage = 2;
-          return;
+      if (data.hits.length < perPage || data.total === currLoadPage * perPage) {
+        iziToast.warning({
+          message: "We're sorry, but you've reached the end of search results.",
+          position: 'topRight',
+        });
+        currLoadPage = 2;
+        return;
       } else {
         refs.loadBtn.classList.add('active');
         currLoadPage += 1;
       }
-      })
+    })
     .catch(err => {
       console.log(err);
     })
     .finally(() => {
       refs.loader.classList.remove('active');
     });
-})
+});
